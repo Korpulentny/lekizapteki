@@ -1,0 +1,174 @@
+.identical-medicines-details-hr {
+  border-width: 3px;
+}
+
+.identical-medicines-details-selected-medicine-section {
+  background-color: #c0c0c0;
+
+  display: inline-grid;
+  grid-column-gap: 10%;
+  grid-row-gap: 10%;
+
+  grid-template-rows: auto auto auto;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-areas:
+    ".                                                       identical-medicines-details-selected-medicine-name-top  identical-medicines-details-selected-medicine-active-ingredient-top     identical-medicines-details-selected-medicine-active-ingredient-top  identical-medicines-details-selected-medicine-retail-price-top"
+    "identical-medicines-details-selected-medicine-ean       identical-medicines-details-selected-medicine-dose      identical-medicines-details-selected-medicine-trade-price  identical-medicines-details-selected-medicine-retail-price           identical-medicines-details-selected-medicine-charge-factor"
+    "identical-medicines-details-selected-medicine-ean       identical-medicines-details-selected-medicine-form      identical-medicines-details-selected-medicine-sale-price   identical-medicines-details-selected-medicine-total-founding         identical-medicines-details-selected-medicine-refund";
+
+
+  margin-left: 2.5%;
+  margin-top: 2.5%;
+  width: 95%;
+  padding: 32px;
+}
+
+.identical-medicines-details-selected-medicine-name-top {
+  grid-area: identical-medicines-details-selected-medicine-name-top
+}
+
+.identical-medicines-details-selected-medicine-active-ingredient-top {
+  grid-area: identical-medicines-details-selected-medicine-active-ingredient-top;
+}
+
+.identical-medicines-details-selected-medicine-profitability-rate-top {
+  grid-area: identical-medicines-details-selected-medicine-retail-price-top;
+}
+
+.identical-medicines-details-selected-medicine-ean {
+  grid-area: identical-medicines-details-selected-medicine-ean;
+}
+
+.identical-medicines-details-selected-medicine-dose {
+  grid-area: identical-medicines-details-selected-medicine-dose;
+}
+
+.identical-medicines-details-selected-medicine-form {
+  grid-area: identical-medicines-details-selected-medicine-form;
+}
+
+.identical-medicines-details-selected-medicine-trade-price {
+  grid-area: identical-medicines-details-selected-medicine-trade-price;
+}
+
+.identical-medicines-details-selected-medicine-sale-price {
+  grid-area: identical-medicines-details-selected-medicine-sale-price;
+}
+
+.identical-medicines-details-selected-medicine-retail-price {
+  grid-area: identical-medicines-details-selected-medicine-retail-price;
+}
+
+.identical-medicines-details-selected-medicine-total-founding {
+  grid-area: identical-medicines-details-selected-medicine-total-founding;
+}
+
+.identical-medicines-details-selected-medicine-charge-factor {
+  grid-area: identical-medicines-details-selected-medicine-charge-factor;
+}
+
+.identical-medicines-details-selected-medicine-refund {
+  grid-area: identical-medicines-details-selected-medicine-refund;
+}
+
+.identical-medicines-bolder-text {
+  font-weight: bolder;
+}
+
+.identical-medicines-details-table {
+  margin-top: 2%;
+
+  margin-left: 2.5%;
+  width: 95%;
+}
+
+.identical-medicines-details-table-header {
+  background-color: rgb(215, 174, 194);
+  color: #ffffff;
+  border: 1px solid #ffffff;
+
+  text-align: center;
+  font-weight: bold;
+
+  margin-left: 100px;
+}
+
+.identical-medicines-details-table-cell {
+  background-color: #ffffff;
+  color: #000000;
+
+  text-align: center;
+
+  border: 1px solid #c0c0c0;
+}
+
+.identical-medicines-details-expanded-row {
+  background-color: #c0c0c0;
+}
+
+tr.identical-medicines-details-details-expanded-row {
+  height: 0;
+}
+
+tr.identical-medicines-details-details-expanded-element:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.identical-medicines-details-details-expanded-element:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.identical-medicines-details-expanded-element {
+  overflow: hidden;
+  display: flex;
+
+  background-color: #c0c0c0;
+}
+
+.identical-medicines-details-expanded-section {
+  display: inline-grid;
+  grid-column-gap: 10%;
+  grid-row-gap: 10%;
+
+  width: 100%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-areas:
+    "identical-medicines-details-medicine-ean       identical-medicines-details-medicine-dose      identical-medicines-details-medicine-trade-price  identical-medicines-details-medicine-retail-price           identical-medicines-details-medicine-charge-factor"
+    "identical-medicines-details-medicine-ean       identical-medicines-details-medicine-form      identical-medicines-details-medicine-sale-price   identical-medicines-details-medicine-total-founding         identical-medicines-details-medicine-refund";
+}
+
+.identical-medicines-details-medicine-ean {
+  grid-area: identical-medicines-details-medicine-ean;
+}
+
+.identical-medicines-details-medicine-dose {
+  grid-area: identical-medicines-details-medicine-dose;
+}
+
+.identical-medicines-details-medicine-form {
+  grid-area: identical-medicines-details-medicine-form;
+}
+
+.identical-medicines-details-medicine-sale-price {
+  grid-area: identical-medicines-details-medicine-sale-price;
+}
+
+.identical-medicines-details-medicine-retail-price {
+  grid-area: identical-medicines-details-medicine-retail-price;
+}
+
+.identical-medicines-details-medicine-total-founding {
+  grid-area: identical-medicines-details-medicine-total-founding;
+}
+
+.identical-medicines-details-medicine-charge-factor {
+  grid-area: identical-medicines-details-medicine-charge-factor;
+}
+
+.identical-medicines-details-medicine-refund {
+  grid-area: identical-medicines-details-medicine-refund;
+}

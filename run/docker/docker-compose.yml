@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  lekizapteki-backend:
+    build: ../../lekizapteki-backend/
+    ports:
+      - "7312:7312"
+
+  lekizapteki-frontend:
+    build: ../../lekizapteki-frontend/
+    ports:
+      - "1237:4200"

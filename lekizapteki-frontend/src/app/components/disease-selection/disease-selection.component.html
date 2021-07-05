@@ -1,0 +1,26 @@
+<section class="disease-selection-section">
+
+  <label class="disease-selection-label">
+    Wybierz chorobę
+  </label>
+
+  <ng-select
+    [(ngModel)]="selectedDiseaseId"
+    [items]="getDiseases() | async"
+    [virtualScroll]="true"
+    (open)="openFloatingList()"
+    bindLabel="name"
+    placeholder="{{getPlaceholder()}}"
+    appendTo="body"
+    bindValue="id"
+    class="disease-selection-select">
+  </ng-select>
+
+  <button
+    (click)="onClickSubmitButton()"
+    class="disease-selection-button">
+    Zatwierdź
+  </button>
+
+</section>
+

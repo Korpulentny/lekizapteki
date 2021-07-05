@@ -1,0 +1,25 @@
+<app-top-bar class="app-top-bar"></app-top-bar>
+
+<section class="app-container">
+
+  <app-disease-selection
+    (confirmed)="confirmedDiseaseSelection($event)"
+    class="app-disease-selection"></app-disease-selection>
+
+  <app-medicine-selection
+    [hidden]="isMedicineSelectionHidden"
+    [selectedDiseaseId]="selectedDiseaseId"
+    (confirmed)="confirmedMedicineSelection($event)"
+    class="app-medicine-selection"></app-medicine-selection>
+
+  <app-identical-medicines-details
+    [hidden]="areIdenticalMedicinesHidden"
+    [selectedDiseaseId]="selectedDiseaseId"
+    [selectedMedicineEan]="selectedMedicineEan"
+    class="app-identical-medicines-details"></app-identical-medicines-details>
+
+</section>
+
+<p class="app-background-text">
+  Lekizapteki
+</p>

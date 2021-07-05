@@ -1,0 +1,111 @@
+%& --translate-file latin2pl
+\documentclass{article}
+
+\usepackage{polski}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\hypersetup{
+colorlinks=true,
+urlcolor=blue,
+}
+\setcounter{section}{-1}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+\title{
+Lekizapteki\\
+\large wymagania funkcjonalne}
+\author{Marcin Abramowicz \and Mateusz Danowski \and Dawid Jamka \and Tomasz Patyna}
+
+
+\begin{document}
+  \setlength{\parindent}{0in}
+  \maketitle
+
+  \section{Dziennik zmian}
+  \begin{tabular}{|c|c|c|}
+    Nr iteracji & Data & Opis zmian \\
+    \hline
+    1. & 23.03.2020 & Utworzenie dokumentu oraz jego pierwsza wersja. \\
+    \hline
+    1. & 29.04.2020 & Poprawki, uszczegółowienie wymagań. \\
+    \hline
+    2. & 29.06.2020 & Aktualizacja obsługiwanych leków i sposobu obliczania ``opłacalności''.
+  \end{tabular}
+
+  \section{Opis}
+    Użytkownik ma do dyspozycji aplikację WWW, która umożliwia wyszukiwanie leków identycznych z szukanym na daną jednostkę chorobową.
+    Serwis udostępnia przeglądanie i wyszukiwanie tylko leków, które są w niżej opisanej postaci.
+
+  \section{Wymagania funkcjonalne}
+    \subsection{Ograniczenia przeszukiwanych danych}
+      Użytkownik otrzymuje możliwość przeszukiwania lekówm których postać znajduje się w załączniku ``obslugiwane-formy-leków.txt''
+
+    \subsection{Opis komponentu dalej nazywanego ``Lista z polem do filtrowania''}
+      Komponent umożliwia wybieranie elementu ze zbioru elementów.
+      Jest on polem, na które można kliknąć.
+      Po kliknięciu rozwija się bezpośrednio pod nim lista, natomiast początkowe pole umożliwia wpisywanie tekstu.
+      Elementy w liście są posortowane alfabetycznie rosnąco (`a` jest przed `b`).
+      Wybór elementu odbywa się poprzez wybranie go z listy — przewijanie jej i kliknięcie na element.
+      Pole wejściowe umożliwia filtrowanie elementów wyświetlanych w liście, są w niej wyświetlane jedynie pozycje zawierające wpisaną frazę.
+
+    \subsection{Opis użytkowania}
+      \subsubsection{Wybór jednostki chorobowej}
+        Użytkownik wybiera chorobę z listy z polem do filtrowania.
+        Następnie, zatwierdza wybór wciśnięciem guzika ``Zatwierdź chorobę''.
+        Guzik znajduje się obok komponentu do wyboru choroby.
+        Powoduje to pojawienie się listy z polem do filtrowania do wybierania leku.
+
+      \subsubsection{Wybór leku}
+        Użytkownik może wyszukiwać lek podobnie jak chorobę lub po numerze EAN.
+        Wybór ten dokonuje przesuwanym guzikiem ``Szukaj po numerze EAN'' znajdującym się obok.
+
+        Jeśli nie wybierze tej opcji, to wybiera lek, spośród tych które są przypisywane na wybraną jednostkę chorobową.
+        Używa do tego również listy z polem do filtrowania.
+
+        Jeśli zdecyduje się na wybieranie po numerze EAN, po przełączeniu guzika znika lista z polem do filtrowania,
+        a w jej miejsce pojawia się pole do wpisywania numeru EAN.
+
+        Użytkownik wybór potwierdza naciśnięciem guzika ``szukaj'', który znajduje się obok.
+
+        Pojawia się po tym tabelka zawierające leki generyczne do podanego, czyli takie, które zawierają tę samą substancję czynną w odpowiedniej dawce
+        (o lekach generycznych można poczytać \href{https://pl.wikipedia.org/wiki/Lek_generyczny}{tutaj}).
+        Wyświetlone są leki, które również są refundowane na podaną jednostkę chorobową.
+        Dodatkowo nad tabelką wyświetla się pole z informacjami o wyszukiwanym leku, z takimi samymi polami jak w niżej opisanej tabeli.
+
+        Pozycje są posortowane po dalej zdefiniowanej ``opłacalności''.
+        Leki o takiej samej wartości ``opłacalności'' są wyświetlane posortowane alfabetycznie rosnąco.
+        Są one wyświetlane w tabelce, a użytkownik może je przewijać.
+        Każda pozycja zawiera nazwę leku, substancję czynną i cenę detaliczną zdefiniowaną w rozporządzeniu.
+        Po kliknięciu na wiersz w tabeli wysuwa się pod nim panel z informacją dotyczącą numeru EAN tego leku, dawką oraz postacią.
+        Pokazywane są również szczegóły dotyczące ceny oraz poziomu odpłatności, tj.
+        `Urzędowa cena zbytu',
+        `Cena hurtowa brutto',
+        `Cena detaliczna',
+        `Wysokość limitu finansowania',
+        `Poziom odpłatności' i
+        `Wysokość dopłaty świadczeniobiorcy'.
+
+        Jeżeli jednak użytkownik wyszukiwał po numerze EAN i podany numer jest nieprawidłowy, zostanie wyświetlona informacja z napisem ``Nieprawidłowy numer EAN''.
+        Natomiast, jeżeli lek o danym numerze EAN istnieje, ale nie jest on przypisywany na wybraną jednostkę chorobową,
+        wyświetli się informacja z napisem ``Lek o podanym numerze EAN nie jest przypisywany na wybraną jednostkę chorobową''.
+
+      \subsubsection{Definicja ``opłacalności''}
+        Definiujemy wartość tą dla leków jedynie w postaciach podanych w sekcji 2.1.
+        Definiujemy ją jako współczynnik ceny detalicznej do 1 mg substancji czynnych w porcji leku,
+        czyli $CENA / (LICZBA-PORCJI-W-OPAKOWANIU * SUMA-ILOSCI-SUBSTANCJI-CZYNNYCH-W-MG)$.
+        Na przykład, opakowanie leku ``LekABC'' zawiera 69 tabletek, w każdej tabletce są 40 mg substancji czynnej ``A''
+        i 2 mg substancji czynnej ``B'' i kosztuje 12,37,
+        wtedy współczynnik jest równy $\frac{12,37}{69 * (40 + 2)} \approx 0,0042$.
+        Z kolei w opakowaniu ``LekXYZ'' są 42 tabletki rownież po 40 mg substancji czynnej ``A'' i 2 mg substancji czynnej ``B'' i można go nabyć za 17,23,
+        więc współczynnik to $\frac{17,23}{42 * (40 + 2)} \approx 0.0097$.
+        Zakładając, że są identyczne, w wyniku wyszukiwania ``LekABC'' wyświetliłby się nad ``LekXYZ'', gdyż ma mniejszy współczynnik,
+        co jest równoważne z mniejszą ceną za 1 mg substancji czynnych na opakowanie.
+
+  \section{Wymagania niefunkcjonalne}
+    Frontend pobiera z backendu całe listy z chorobami oraz lekami i przechowuje je lokalnie.
+    Wydajność zostaje zwiększona, gdyż liczba zapytań do backendu, które są wolniejsze niż odczyty lokalne, jest zminimalizowana.
+    Umożliwi to przeglądanie i filtrowanie list szybko, bez konieczności odpytywania się zewnętrznego serwisu.
+    Użytkownik w ten sposób otrzymuje większą wygodę przeglądania strony.
+
+\end{document}

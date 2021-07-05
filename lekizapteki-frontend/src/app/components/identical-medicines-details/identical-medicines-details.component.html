@@ -1,0 +1,215 @@
+<hr class="identical-medicines-details-hr">
+
+<section class="identical-medicines-details-selected-medicine-section">
+
+  <p class="identical-medicines-details-selected-medicine-name-top">
+    {{getSelectedMedicine().name}}
+  </p>
+
+  <p class="identical-medicines-details-selected-medicine-active-ingredient-top">
+    {{getSelectedMedicine().activeIngredient}}
+  </p>
+
+  <p class="identical-medicines-details-selected-medicine-profitability-rate-top">
+    {{getSelectedMedicine().pricing.profitabilityRate}}
+  </p>
+
+  <p class="identical-medicines-details-selected-medicine-ean">
+    EAN:
+
+    <span class="identical-medicines-bolder-text">
+       {{getSelectedMedicine().ean}}
+    </span>
+  </p>
+
+  <p class="identical-medicines-details-selected-medicine-dose">
+    dawka:
+
+    <span class="identical-medicines-bolder-text">
+       {{getSelectedMedicine().dose}}
+    </span>
+  </p>
+
+  <p class="identical-medicines-details-selected-medicine-form">
+    postać:
+
+    <span class="identical-medicines-bolder-text">
+       {{getSelectedMedicine().form}}
+    </span>
+  </p>
+
+  <p class="identical-medicines-details-selected-medicine-trade-price">
+    Urzędowa cena zbytu:
+
+    <span class="identical-medicines-bolder-text">
+       {{getSelectedMedicine().pricing.tradePrice}} PLN
+    </span>
+  </p>
+
+  <p class="identical-medicines-details-selected-medicine-sale-price">
+    Cena hurtowa brutto:
+
+    <span class="identical-medicines-bolder-text">
+       {{getSelectedMedicine().pricing.salePrice}} PLN
+    </span>
+  </p>
+
+  <p class="identical-medicines-details-selected-medicine-retail-price">
+    Cena detaliczna:
+
+    <span class="identical-medicines-bolder-text">
+       {{getSelectedMedicine().pricing.retailPrice}} PLN
+    </span>
+  </p>
+
+  <p class="identical-medicines-details-selected-medicine-total-founding">
+    Wysokość limitu finansowania:
+
+    <span class="identical-medicines-bolder-text">
+       {{getSelectedMedicine().pricing.totalFunding}} PLN
+    </span>
+  </p>
+
+  <p class="identical-medicines-details-selected-medicine-charge-factor">
+    Poziom odpłatności:
+
+    <span class="identical-medicines-bolder-text">
+       {{getChargeFactorMessage(getSelectedMedicine().pricing.chargeFactor, getSelectedMedicine().pricing.isLumpSum, getSelectedMedicine().pricing.isFree)}}
+    </span>
+  </p>
+
+  <p class="identical-medicines-details-selected-medicine-refund">
+    Wysokość dopłaty świadczeniobiorcy:
+
+    <span class="identical-medicines-bolder-text">
+       {{getSelectedMedicine().pricing.refund}} PLN
+    </span>
+  </p>
+
+</section>
+
+<table mat-table
+       [dataSource]="getIdenticalMedicinesDetails()" multiTemplateDataRows
+       class="identical-medicines-details-table">
+
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of getColumnsToDisplay()">
+
+    <th mat-header-cell
+        *matHeaderCellDef
+        class="identical-medicines-details-table-header">
+      {{column}}
+    </th>
+
+    <td mat-cell
+        *matCellDef="let element"
+        class="identical-medicines-details-table-cell">
+      {{getColumnContentForHeader(column, element)}}
+    </td>
+
+  </ng-container>
+
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element"
+        [attr.colspan]="getColumnsToDisplay().length"
+        class="identical-medicines-details-expanded-row">
+
+      <div [@detailExpand]="element == getExpandedElement() ? 'expanded' : 'collapsed'"
+           class="identical-medicines-details-expanded-element">
+
+        <section class="identical-medicines-details-expanded-section">
+
+          <p class="identical-medicines-details-medicine-ean">
+            EAN:
+
+            <span class="identical-medicines-bolder-text">
+               {{element.ean}}
+            </span>
+          </p>
+
+          <p class="identical-medicines-details-medicine-dose">
+            dawka:
+
+            <span class="identical-medicines-bolder-text">
+              {{element.dose}}
+            </span>
+          </p>
+
+          <p class="identical-medicines-details-medicine-form">
+            postać:
+
+            <span class="identical-medicines-bolder-text">
+              {{element.form}}
+            </span>
+          </p>
+
+          <p class="identical-medicines-details-medicine-trade-price">
+            Urzędowa cena zbytu:
+
+            <span class="identical-medicines-bolder-text">
+              {{element.pricing.tradePrice}} PLN
+            </span>
+          </p>
+
+          <p class="identical-medicines-details-medicine-sale-price">
+            Cena hurtowa brutto:
+
+            <span class="identical-medicines-bolder-text">
+              {{element.pricing.salePrice}} PLN
+            </span>
+          </p>
+
+          <p class="identical-medicines-details-medicine-retail-price">
+            Cena detaliczna:
+
+            <span class="identical-medicines-bolder-text">
+              {{element.pricing.retailPrice}} PLN
+            </span>
+          </p>
+
+          <p class="identical-medicines-details-medicine-total-founding">
+            Wysokość limitu finansowania:
+
+            <span class="identical-medicines-bolder-text">
+              {{element.pricing.totalFunding}} PLN
+            </span>
+          </p>
+
+          <p class="identical-medicines-details-medicine-charge-factor">
+            Poziom odpłatności:
+
+            <span class="identical-medicines-bolder-text">
+              {{getChargeFactorMessage(element.pricing.chargeFactor, element.pricing.isLumpSum, element.pricing.isFree)}}
+            </span>
+          </p>
+
+          <p class="identical-medicines-details-medicine-refund">
+            Wysokość dopłaty świadczeniobiorcy:
+
+            <span class="identical-medicines-bolder-text">
+              {{element.pricing.refund}} PLN
+            </span>
+          </p>
+
+        </section>
+      </div>
+    </td>
+
+  </ng-container>
+
+  <tr mat-header-row
+      *matHeaderRowDef="getColumnsToDisplay()">
+  </tr>
+
+  <tr mat-row
+      *matRowDef="let element; columns: getColumnsToDisplay();"
+      [class.example-expanded-row]="getExpandedElement() === element"
+      (click)="clickOnExpandedElement(element)"
+      class="identical-medicines-details-details-expanded-element">
+  </tr>
+
+  <tr mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="identical-medicines-details-details-expanded-row">
+  </tr>
+
+</table>

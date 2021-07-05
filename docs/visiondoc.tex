@@ -1,0 +1,59 @@
+%& --translate-file latin2pl
+\documentclass{article}
+
+\usepackage{polski}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue,
+}
+
+
+\title{Lekizapteki}
+\author{Marcin Abramowicz \and Mateusz Danowski \and Dawid Jamka \and Tomasz Patyna}
+
+
+\begin{document}
+  \maketitle
+
+
+  \section{Motywacja}
+
+  System refundacji leków umożliwia łatwiejszy i tańszy dostęp pacjentów do substancji leczniczych.
+  W celu usystematyzowania całego procesu Ministerstwo Zdrowia cyklicznie udostępnia dokumenty opisujące ceny oraz wartości refundacji poszczególnych leków, których koszta Państwo postanawia w pełni, bądź częściowo finansować.
+  Liczba zawartych w nich pozycji może być przytłaczająca dla lekarzy przypisujących te środki, farmaceutów oraz pacjentów.
+  Wychodząc naprzeciw ich potrzebom powstanie aplikacja operująca na tych zbiorach danych, umożliwiająca ich analizowanie oraz szybkie i intuicyjne przeszukiwanie.
+  Zostanie zwiększona świadomość społeczeństwa na temat programu refundacji leków, pacjenci dowiedzą się więcej na temat przyjmowanych substancji.
+
+
+  \section{Opis}
+
+  Aplikacja WWW bazuje na danych udostępnianych przez
+  \href{https://www.gov.pl/web/zdrowie/obwieszczenia-ministra-zdrowia-lista-lekow-refundowanych?fbclid=IwAR1U3YB3yON5EN2s1qdYRbcIeh7iDxqeOtQoEYGFvX9ozGDWdURIK2JOMRs}
+  {Ministerstwo Zdrowia}
+  oraz \href{https://www.nfz.gov.pl/aktualnosci/aktualnosci-centrali/komunikat-dgl,7465.html?fbclid=IwAR0F41XjLwTg7XQdUjeYpE_KS4VVZk50etlbYDpwxhxOR2ZLdslMatUtbEU}{NFZ}
+  w postaci arkuszy Excel.
+
+  Użytkownik ma możliwość wyszukiwania leków po ich nazwie, dawce, substancji czynnej, opakowaniu, kodzie EAN, poziomie odpłatności, jednostkach chorobowych.
+  Dodatkowo ma możliwość znalezienia najtańszego spośród identycznych, tj. o takiej samej substancji czynnej oraz dawkowaniu do danego.
+  Dla każdego jest dostępna statystyka opisująca, jak pacjenci kupują dany lek oraz informacja o najbliższej aptece, która posiada go w sprzedaży.
+
+  Dane udostępniane przez Ministerstwo niestety czasami są błędne bądź niespójne.
+  W celu całkowitej pewności, dzięki bazie ChPL, jest sprawdzane, czy dany lek na pewno powinien być przypisywany na podane jednostki chorobowe.
+  Aplikacja pozwala kontrolować istniejące pomyłki, użytkownik ma możliwość przejrzenia błędów w celu ich weryfikacji bądź zgłoszenia twórcom danych.
+
+  Aplikacja pozwala użytkownikom pozostawiać swoją ocenę i opis przebiegu kuracji danym lekiem.
+  Pacjenci mają możliwość dowiedzieć się więcej o przypisanej substancji oraz rozwiać niepewności dotyczące dawkowania.
+
+
+  \section{Podsumowanie}
+
+  Dzięki udostępnianiu informacji o refundacjach społeczeństwo może dowiedzieć się jakie leki w aptekach będzie można nabyć w niższych cenach.
+  Jednakże sposób upubliczniania tych informacji uniemożliwia ich swobodne przeglądanie i analizowanie substancji.
+  Aplikacja pozwalająca na przyjemniejsze przeglądanie tych danych zwiększy świadomość społeczeństwa o refundowanych lekach.
+  Zostaną rozwiane wątpliwości związane z tym tematem oraz Ministerstwo zostanie skłonione do uważniejszego i dokładniejszego tworzenia arkuszy.
+
+
+\end{document}
